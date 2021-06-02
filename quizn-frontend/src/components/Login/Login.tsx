@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../providers/AuthProvider/AuthProvider";
 
+import "./Login.css";
+
 const Login = () => {
   const { setUserLoggedIn } = useAuth();
 
@@ -15,7 +17,7 @@ const Login = () => {
   };
 
   return (
-    <form style={{ width: "40%", margin: "auto" }}>
+    <form className="form">
       <h3>LOGIN</h3>
       <div>
         {/* <label for="formControlEmail" className="form-label">
@@ -52,7 +54,10 @@ const Login = () => {
         LOGIN
       </button>
       <p>
-        Not an user yet? <Link to="/signup">Create your account</Link>
+        Not an user yet?{" "}
+        <Link to="/signup" className="link">
+          Create your account
+        </Link>
       </p>
     </form>
   );

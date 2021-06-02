@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 
+import "../Login/Login.css";
+
 const Signup = () => {
   return (
-    <form style={{ width: "40%", margin: "auto" }}>
+    <form className="form">
       <h3>SIGN UP</h3>
       <input
         type="text"
@@ -19,7 +21,7 @@ const Signup = () => {
       <input
         type="text"
         className="form-control"
-        placeholder="john.cena@gmail.com"
+        placeholder="Enter your email"
         required
       />
       <input
@@ -33,7 +35,10 @@ const Signup = () => {
         REGISTER
       </button>
       <p>
-        Already have an account? <Link to="/login">LOGIN</Link>
+        Already have an account?{" "}
+        <Link to="/login" className="link">
+          Login
+        </Link>
       </p>
     </form>
   );

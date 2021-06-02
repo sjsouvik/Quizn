@@ -19,10 +19,10 @@ export default function App() {
 
   return (
     <div className="App">
-      <nav className="page-navigation">
+      <nav className="quiz-navigation">
         <div className="brand">
           <h3 className="nav-brand">
-            <Link to="/">QUICK QUIZ</Link>
+            <Link to="/">Quizn</Link>
           </h3>
         </div>
 
