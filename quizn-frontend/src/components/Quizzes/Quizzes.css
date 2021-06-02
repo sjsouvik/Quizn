@@ -1,0 +1,22 @@
+.quiz-row {
+  display: grid;
+  grid-template-columns: repeat(8, auto);
+  grid-gap: 1rem;
+  padding: 1rem;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media only screen and (max-width: 627px) {
+  .quiz-row {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .quiz-row {
+    display: flex;
+  }
+}

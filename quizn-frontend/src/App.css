@@ -1,0 +1,21 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.page-navigation {
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  background-color: white;
+  color: var(--primary-color);
+}
+
+.page-navigation a {
+  color: var(--primary-color);
+}
+
+main {
+  position: relative;
+  top: 6.5rem;
+}
