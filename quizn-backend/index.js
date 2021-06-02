@@ -26,9 +26,7 @@ app.use((req, res, next, error) => {
     .json({ message: "Error Occured", errorMessage: error.message });
 });
 
-const connectionString =
-  "mongodb://testuser:test123@ccplus2020-shard-00-00.liii8.mongodb.net:27017,ccplus2020-shard-00-01.liii8.mongodb.net:27017,ccplus2020-shard-00-02.liii8.mongodb.net:27017/videoLibrary?ssl=true&replicaSet=CCPlus2020-shard-0&authSource=admin&retryWrites=true&w=majority";
-// process.env.DB_CONNECTION_STRING;
+const connectionString = process.env.DB_CONNECTION_STRING;
 
 mongoose
   .connect(connectionString, {
