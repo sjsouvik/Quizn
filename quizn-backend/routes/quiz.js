@@ -23,7 +23,7 @@ router
       res.json({ savedQuiz });
     } catch (error) {
       res.status(500).json({
-        message: "Unable to save playlist",
+        message: "Unable to save the quiz",
         errorMessage: error.message,
       });
     }
@@ -50,7 +50,7 @@ router.param("quizId", async (req, res, next, id) => {
 router
   .route("/quiz/:quizId")
   .get((req, res) => {
-    const { quiz } = req;
+    let { quiz } = req;
     quiz.__v = undefined;
     res.json({ quiz });
   })

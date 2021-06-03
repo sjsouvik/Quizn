@@ -12,7 +12,6 @@ const questionSchema = new mongoose.Schema(
     },
     selectedOption: {
       type: String,
-      required: [true, "Please enter selected option for the question"],
     },
     options: [
       {
