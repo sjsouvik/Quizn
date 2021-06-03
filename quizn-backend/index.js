@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config({ path: "/.env" });
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -8,12 +9,14 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+const questionRoutes = require("./routes/question");
 const quizRoutes = require("./routes/quiz");
 
+app.use("/v1", questionRoutes);
 app.use("/v1", quizRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Welcome to API of Quick Quiz ");
+  res.send("Welcome to API of Quizn");
 });
 
 app.use((req, res) => {
@@ -38,5 +41,7 @@ mongoose
   .then(() => console.log("Connected to DB"))
   .catch((error) => console.log("Couldn't connect to DB", error));
 
-const port = 8080;
-app.listen(port, () => console.log(`App is running at port ${port}`));
+const port = process.env.PORT || 8080;
+app.listen(port, () =>
+  console.log(`App is running at port http://localhost:${port}`)
+);
