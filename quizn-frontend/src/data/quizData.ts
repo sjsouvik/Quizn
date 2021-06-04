@@ -4,7 +4,7 @@ export const quizData: Data = {
   name: "Quick Quiz",
   quizzes: [
     {
-      id: 1,
+      _id: 1,
       title: "Web Tech",
       image:
         "https://img-c.udemycdn.com/course/240x135/781532_8b4d_6.jpg?Expires=1622272027&Signature=hTQ3T4U5fWw8vihO5PFAydCTfxmAJL5rq3Vey94ZGCdwMEfjozEwfkhr7urXHcm4eeqsE3IYVl0iIbi6pTzslvnWX0cxKuosneZmVOHjwMx0qL8Q-gTWUJzrGg00HRfnPkfaF6jOS~MFdKDcIGibHPpKxr4T3Y5Xn5QkvjUlWzdNxuLhzFxnuLxnXQcasyMqly2wXGQpIxSSYD59SgYB~U50EBmbPTK-K8cGtdhsZo7m9-sGig8ttc3eyl5HAg3soaKlnwADxNvnsr1ySG-f3ReL2nH5GHrW5cSJYjIjXvH5EoB5qNvi-z63svxyXq3rL1Eg4fReJATfWD714zJdrw__&Key-Pair-Id=APKAITJV77WS5ZT7262A",
@@ -69,7 +69,7 @@ export const quizData: Data = {
       ],
     },
     {
-      id: 2,
+      _id: 2,
       title: "JavaScript",
       image:
         "https://img-b.udemycdn.com/course/240x135/1743420_0062.jpg?secure=MY5sM2AVemYLzy_X0AemSQ%3D%3D%2C1622272382",

@@ -6,6 +6,12 @@ export const quizReducer = (
   action: Action
 ): InitialState => {
   switch (action.type) {
+    case "INITIALIZE_DATA":
+      return {
+        ...state,
+        quizData: action.payload,
+      };
+
     case "RESET_QUIZ":
       return {
         ...state,

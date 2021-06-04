@@ -1,6 +1,7 @@
-import { Question } from "../data/quizData.types";
+import { Quiz, Question } from "../data/quizData.types";
 
 export type Action =
+  | { type: "INITIALIZE_DATA"; payload: Quiz[] | undefined }
   | { type: "RESET_QUIZ" }
   | { type: "LOAD_QUESTIONS"; payload: { questions: Question[] } }
   | { type: "GO_TO_PREVIOUS_QUESTION" }

@@ -7,7 +7,7 @@ import { quizReducer } from "../../reducers/quizReducer";
 import { InitialState, QuizContext } from "./QuizDataProvider.types";
 
 const dataState: InitialState = {
-  quizData,
+  quizData: [],
   questions: null,
   currentQuestion: 0,
   score: 0,

@@ -1,9 +1,9 @@
 import React from "react";
-import { Data, Question } from "../../data/quizData.types";
+import { Quiz, Question } from "../../data/quizData.types";
 import { Action } from "../../reducers/action.types";
 
 export type InitialState = {
-  quizData: Data;
+  quizData: Quiz[] | undefined;
   questions: Question[] | null;
   currentQuestion: number;
   score: number;
