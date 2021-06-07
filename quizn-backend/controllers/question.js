@@ -5,7 +5,7 @@ exports.getQuestionById = async (req, res, next, id) => {
     const question = await Question.findById(id);
 
     if (!question) {
-      return res.json({ message: "NOT Found the quiz" });
+      return res.json({ message: "NOT Found the question" });
     }
 
     req.question = question;
