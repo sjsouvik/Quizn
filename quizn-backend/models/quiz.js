@@ -11,7 +11,7 @@ const quizSchema = new mongoose.Schema(
     },
     image: {
       type: mongoose.SchemaTypes.Url,
-      required: [true, "Please enter image url for the quiz'"],
+      required: [true, "Please enter image url for the quiz"],
     },
     questions: [
       {

@@ -9,15 +9,25 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+const { isLoggedIn } = require("./controllers/auth");
+
 const questionRoutes = require("./routes/question");
 const quizRoutes = require("./routes/quiz");
-
-app.use("/v1", questionRoutes);
-app.use("/v1", quizRoutes);
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
+const scoreRoutes = require("./routes/score");
 
 app.get("/", (req, res) => {
   res.send("Welcome to API of Quizn");
 });
+
+app.use("/v1", questionRoutes);
+app.use("/v1", quizRoutes);
+app.use("/v1", authRoutes);
+
+app.use(isLoggedIn);
+app.use("/v1", userRoutes);
+app.use("/v1", scoreRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: "NOT Found this route on server" });
