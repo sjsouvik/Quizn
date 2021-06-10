@@ -15,7 +15,7 @@ import { useAuth } from "./providers/AuthProvider/AuthProvider";
 import "./App.css";
 
 export default function App() {
-  const { isUserLoggedIn } = useAuth();
+  const { authToken, authUser } = useAuth();
 
   return (
     <div className="App">
@@ -28,10 +28,10 @@ export default function App() {
 
         <ul className="nav-menu">
           <li className="nav-item">
-            <Link to={isUserLoggedIn ? "/profile" : "/login"}>
+            <Link to={authToken ? "/profile" : "/login"}>
               <img src={person} alt="" style={{ height: "1.5rem" }} />
               <div style={{ fontSize: "0.85rem", letterSpacing: "1px" }}>
-                {isUserLoggedIn ? "Hello User" : "Login"}
+                {authToken ? "Hello " + authUser?.firstName : "Login"}
               </div>
             </Link>
           </li>

@@ -9,11 +9,11 @@ const PrivateRoute = ({
   path: string;
   element: React.ReactElement;
 }) => {
-  const { isUserLoggedIn } = useAuth();
+  const { authToken } = useAuth();
 
   return (
     <div>
-      {isUserLoggedIn ? (
+      {authToken ? (
         <Route path={path} element={element} />
       ) : (
         <Navigate state={{ from: path }} replace to="/login" />

@@ -11,12 +11,12 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 const rootElement = document.getElementById("root");
 render(
-  <AuthProvider>
-    <QuizDataProvider>
-      <Router>
+  <Router>
+    <AuthProvider>
+      <QuizDataProvider>
         <App />
-      </Router>
-    </QuizDataProvider>
-  </AuthProvider>,
+      </QuizDataProvider>
+    </AuthProvider>
+  </Router>,
   rootElement
 );

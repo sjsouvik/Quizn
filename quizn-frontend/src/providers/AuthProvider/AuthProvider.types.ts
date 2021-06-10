@@ -1,6 +1,14 @@
-import React from "react";
+export type User = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+};
 
 export type AuthContext = {
-  isUserLoggedIn: boolean;
-  setUserLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  login: (email: string, password: string) => void;
+  loginError: string | null;
+  logout: () => void;
+  authToken: string | null;
+  authUser: User | null;
 };

@@ -2,27 +2,35 @@ import axios from "axios";
 
 import { Data } from "../data/quizData.types";
 
-import { ResponseType } from "./useAxios";
+import { RequestType, ResponseType } from "./server.types";
 
 export const serverRequests = async ({
   requestType,
   url,
-}: {
-  requestType: string;
-  url: string;
-}): Promise<ResponseType> => {
+  data,
+}: RequestType): Promise<ResponseType> => {
   switch (requestType) {
     case "get":
       try {
         const response = await axios.get<Data>(url);
         return response.status === 200
-          ? { response, error: false }
-          : { response: undefined, error: true };
+          ? { response, statusCode: response.status }
+          : { response, statusCode: 400 };
       } catch (error) {
-        return { response: undefined, error: true };
+        return { response: undefined, statusCode: error.response.status };
+      }
+
+    case "post":
+      try {
+        const response = await axios.post(url, data);
+        return response.status === 200
+          ? { response, statusCode: response.status }
+          : { response: undefined, statusCode: 400 };
+      } catch (error) {
+        return { response: undefined, statusCode: error.response.status };
       }
 
     default:
-      return { response: undefined, error: false };
+      return { response: undefined, statusCode: 400 };
   }
 };

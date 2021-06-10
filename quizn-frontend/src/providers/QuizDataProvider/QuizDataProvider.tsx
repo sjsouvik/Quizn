@@ -1,7 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
 
-import { quizData } from "../../data/quizData";
-
 import { quizReducer } from "../../reducers/quizReducer";
 
 import { InitialState, QuizContext } from "./QuizDataProvider.types";

@@ -1,23 +1,48 @@
 .form {
-  width: 40%;
+  width: 30%;
   margin: auto;
+}
+
+.form-button {
+  width: 80%;
+}
+
+.password {
+  position: relative;
+}
+
+.password-input {
+  padding-right: 4rem;
+}
+
+.show-password {
+  cursor: pointer;
+  position: absolute;
+  top: 0.4rem;
+  right: 2.75rem;
+}
+
+.input-error {
+  color: red;
+  margin-top: 0;
+  font-size: 0.9rem;
 }
 
 @media only screen and (max-width: 850px) {
   .form {
-    width: 60%;
+    width: 50%;
   }
 }
 
 @media only screen and (max-width: 700px) {
   .form {
-    width: 80%;
+    width: 60%;
   }
 }
 
 @media only screen and (max-width: 500px) {
   .form {
-    width: 100%;
+    width: 90%;
     padding: 0.5rem;
   }
 }

@@ -4,16 +4,6 @@ import { serverRequests } from "./serverRequests";
 
 import { useData } from "../providers/QuizDataProvider/QuizDataProvider";
 
-import { Data } from "../data/quizData.types";
-import { AxiosResponse } from "axios";
-
-export type ResponseType =
-  | {
-      response: AxiosResponse<Data>;
-      error: boolean;
-    }
-  | { response: undefined; error: boolean };
-
 export const useAxios = (endpoint: string) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -33,7 +23,6 @@ export const useAxios = (endpoint: string) => {
         const quizzes =
           serverResponse.response && serverResponse.response.data.quizzes;
         if (!error) {
-          console.log(quizzes);
           dispatch({ type: "INITIALIZE_DATA", payload: quizzes });
         }
       } catch (error) {

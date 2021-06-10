@@ -1,58 +1,59 @@
-import { Link, useNavigate } from "react-router-dom";
+import { FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { useAuth } from "../../providers/AuthProvider/AuthProvider";
 
 import "./Login.css";
 
 const Login = () => {
-  const { setUserLoggedIn } = useAuth();
+  const { login, loginError } = useAuth();
 
-  const navigate = useNavigate();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  const loginHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    // e.preventDefault();
-    setUserLoggedIn(true);
-    localStorage?.setItem("login", JSON.stringify({ userLoggedIn: true }));
-    navigate("/");
+  const loginHandler = async (e: FormEvent<HTMLElement>) => {
+    e.preventDefault();
+
+    login(email, password);
   };
 
   return (
-    <form className="form">
-      <h3>LOGIN</h3>
+    <form className="form" onSubmit={loginHandler}>
+      <h3>Log in to your account</h3>
+      <p className="input-error">{loginError}</p>
       <div>
-        {/* <label for="formControlEmail" className="form-label">
-          Email
-        </label> */}
         <input
-          type="text"
-          id="formControlEmail"
+          type="email"
           className="form-control"
-          placeholder="Enter your email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
       </div>
 
-      <div>
-        {/* <label for="formControlPassword" className="form-label">
-          Password
-        </label> */}
+      <div className="password">
         <input
-          type="password"
-          id="formControlPassword"
-          className="form-control"
-          placeholder="Enter your password"
+          type={showPassword ? "text" : "password"}
+          className="form-control password-input"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
+
+        {password && (
+          <div
+            className="show-password"
+            onClick={() => setShowPassword((showPassword) => !showPassword)}
+          >
+            {showPassword ? "HIDE" : "SHOW"}
+          </div>
+        )}
       </div>
 
-      <button
-        className="btn btn-primary"
-        style={{ width: "80%" }}
-        onClick={(e) => loginHandler(e)}
-        // onSubmit={(e) => loginHandler(e)}
-      >
-        LOGIN
-      </button>
+      <button className="btn btn-primary form-button">LOGIN</button>
       <p>
         Not an user yet?{" "}
         <Link to="/signup" className="link">
