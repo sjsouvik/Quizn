@@ -24,6 +24,14 @@ router.route("/signup").post(
   signup
 );
 
-router.route("/login").post(login);
+router
+  .route("/login")
+  .post(
+    [
+      check("email", "Give a valid email").isEmail(),
+      check("password", "Password is required").isLength({ min: 1 }),
+    ],
+    login
+  );
 
 module.exports = router;
