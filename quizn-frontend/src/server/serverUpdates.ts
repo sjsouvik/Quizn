@@ -9,12 +9,12 @@ export const loginWithCreds = async (email: string, password: string) => {
 
   const { response, statusCode } = serverResponse;
 
-  if (statusCode === 401 || statusCode === 400 || 422) {
+  if (statusCode === 401 || statusCode === 400 || statusCode === 422) {
     return { error: true, message: "Invalid email and password combination" };
   }
 
   if (statusCode !== 200) {
-    return { error: true, message: "Soemthing went wrong" };
+    return { error: true, message: "Something went wrong" };
   }
 
   return response && response.data ? { data: response.data } : { data: null };
@@ -54,7 +54,7 @@ export const signup = async (
   }
 
   if (statusCode !== 200) {
-    return { error: true, message: "Soemthing went wrong" };
+    return { error: true, message: "Something went wrong" };
   }
 
   return { message: "Successfully registered" };
