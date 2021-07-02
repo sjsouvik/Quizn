@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useData } from "../../providers/QuizDataProvider/QuizDataProvider";
+import { useAuth } from "../../providers/AuthProvider/AuthProvider";
 
 import { useLocation } from "react-router-dom";
 
@@ -9,12 +10,22 @@ import ReviewQuestion from "../ReviewQuestion/ReviewQuestion";
 
 import { Quiz } from "../../data/quizData.types";
 
+import { updateWithHighestScore } from "../../server/serverUpdates";
+
 import "./Questions.css";
 
 const Questions = () => {
   const { state, dispatch } = useData();
+  const { authUser, authToken } = useAuth();
+
   const location = useLocation();
   const quiz = location.state as Quiz;
+
+  const [score, setScore] = useState(0);
+
+  const updateScore = (point: number) => {
+    setScore((score) => score + point);
+  };
 
   const nextOrSubmitHandler = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -22,15 +33,22 @@ const Questions = () => {
     const eventTarget = e.target as HTMLButtonElement;
     if (eventTarget.textContent === "Next") {
       dispatch({ type: "GO_TO_NEXT_QUESTION" });
-    } else if (eventTarget.textContent === "Submit") {
-      dispatch({ type: "SUBMIT_QUIZ" });
+    } else if (eventTarget.textContent === "Submit" && authUser && authToken) {
+      updateWithHighestScore(
+        dispatch,
+        score,
+        quiz._id,
+        quiz.title,
+        authUser._id,
+        authToken
+      );
     }
   };
 
   return (
     <div>
       {!state.questions && <Rules />}
-      {state.isSubmitted && <ReviewQuestion />}
+      {state.isSubmitted && <ReviewQuestion score={score} />}
       {state.questions && !state.isSubmitted && (
         <>
           <h3 style={{ textDecoration: "underline" }}>{quiz?.title}</h3>
@@ -43,13 +61,14 @@ const Questions = () => {
             }}
           >
             <p style={{ textAlign: "center" }}>
-              <b>Score:</b> {state.score}
+              <b>Score:</b> {score}
             </p>
           </div>
           <div className="question-box">
             <CurrentQuestion
               questionNo={state.currentQuestion + 1}
               question={state.questions[state.currentQuestion]}
+              updateScore={updateScore}
             />
             <div
               style={{

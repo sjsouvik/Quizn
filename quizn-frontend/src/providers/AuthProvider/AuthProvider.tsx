@@ -43,14 +43,14 @@ const AuthProvider: React.FC = ({ children }) => {
     setAuthUser(user);
 
     localStorage?.setItem("login", JSON.stringify({ token, user }));
-    setupAuthHeaderForServiceCalls(token);
+    // setupAuthHeaderForServiceCalls(token);
     navigate("/");
   };
 
   const logout = () => {
     localStorage?.removeItem("login");
     setAuthToken(null);
-    setupAuthHeaderForServiceCalls(null);
+    // setupAuthHeaderForServiceCalls(null);
     navigate("/");
   };
 

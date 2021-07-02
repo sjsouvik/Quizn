@@ -73,6 +73,7 @@ const Signup = () => {
         placeholder="First Name"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
+        autoFocus
         required
       />
       {firstNameError !== undefined && (

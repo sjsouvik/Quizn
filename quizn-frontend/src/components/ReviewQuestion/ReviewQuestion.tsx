@@ -4,14 +4,14 @@ import CurrentQuestion from "../CurrentQuestion/CurrentQuestion";
 
 import "./ReviewQuestion.css";
 
-const ReviewQuestion = () => {
+const ReviewQuestion = ({ score }: { score: number }) => {
   const { state } = useData();
 
   return (
     <div>
       <h3>Review the answers</h3>
       <p>
-        Score: {state.score} / {state.questions && state.questions.length * 10}
+        Score: {score} / {state.questions && state.questions.length * 10}
       </p>
       <div className="quiz-answer">
         {state.questions &&

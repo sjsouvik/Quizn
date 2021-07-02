@@ -9,7 +9,7 @@ export const quizReducer = (
     case "INITIALIZE_DATA":
       return {
         ...state,
-        quizData: action.payload,
+        [action.payload.name]: action.payload.data,
       };
 
     case "RESET_QUIZ":
@@ -17,7 +17,7 @@ export const quizReducer = (
         ...state,
         questions: null,
         currentQuestion: 0,
-        score: 0,
+        // score: 0,
         isSubmitted: false,
       };
 
@@ -43,7 +43,26 @@ export const quizReducer = (
       };
 
     case "UPDATE_SCORE":
-      return { ...state, score: state.score + action.payload };
+      return {
+        ...state,
+        scores: state.scores.find(
+          (item) => item.quiz._id === action.payload.quizId
+        )
+          ? state.scores.map((item) =>
+              item.quiz._id === action.payload.quizId &&
+              action.payload.score > item.score
+                ? { ...item, score: action.payload.score }
+                : item
+            )
+          : [
+              ...state.scores,
+              {
+                _id: Math.random(),
+                quiz: { _id: Math.random(), title: action.payload.quizTitle },
+                score: action.payload.score,
+              },
+            ],
+      };
 
     case "SUBMIT_QUIZ":
       return { ...state, isSubmitted: true };
@@ -52,3 +71,7 @@ export const quizReducer = (
       return { ...state };
   }
 };
+
+// export const isQuizPlayedBefore=(scores:number, quizId:number)=>{
+//   return scores.find(item=>item.quiz._id===quizId)
+// }

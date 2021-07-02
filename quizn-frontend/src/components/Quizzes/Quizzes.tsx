@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useData } from "../../providers/QuizDataProvider/QuizDataProvider";
+import { useAxios } from "../../server/useAxios";
 
 import Loader from "../Loader/Loader";
 
@@ -7,6 +8,8 @@ import "./Quizzes.css";
 
 const Quizzes = ({ loading }: { loading: boolean }) => {
   const { state, dispatch } = useData();
+
+  const { loading: scoreLoading } = useAxios("score", "scores");
 
   return (
     <section>

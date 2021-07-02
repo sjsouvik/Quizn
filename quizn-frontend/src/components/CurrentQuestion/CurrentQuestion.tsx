@@ -4,9 +4,11 @@ import { Question, Option } from "../../data/quizData.types";
 const CurrentQuestion = ({
   questionNo,
   question,
+  updateScore,
 }: {
   questionNo: number;
   question: Question;
+  updateScore?: (point: number) => void;
 }) => {
   const { dispatch } = useData();
 
@@ -18,8 +20,9 @@ const CurrentQuestion = ({
       },
     });
 
-    if (option.isCorrect) {
-      dispatch({ type: "UPDATE_SCORE", payload: question.point });
+    if (option.isCorrect && updateScore !== undefined) {
+      // dispatch({ type: "UPDATE_SCORE", payload: question.point });
+      updateScore(question.point);
     }
   };
 

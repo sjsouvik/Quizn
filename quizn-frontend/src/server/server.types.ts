@@ -4,6 +4,7 @@ export type RequestType = {
   requestType: string;
   url: string;
   data?: {};
+  token?: {};
 };
 
 export type ResponseType =

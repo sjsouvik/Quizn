@@ -8,11 +8,12 @@ export const serverRequests = async ({
   requestType,
   url,
   data,
+  token,
 }: RequestType): Promise<ResponseType> => {
   switch (requestType) {
     case "get":
       try {
-        const response = await axios.get<Data>(url);
+        const response = await axios.get<Data>(url, token);
         return response.status === 200
           ? { response, statusCode: response.status }
           : { response, statusCode: 400 };
@@ -22,7 +23,7 @@ export const serverRequests = async ({
 
     case "post":
       try {
-        const response = await axios.post(url, data);
+        const response = await axios.post(url, data, token);
         return response.status === 200
           ? { response, statusCode: response.status }
           : { response: undefined, statusCode: 400 };

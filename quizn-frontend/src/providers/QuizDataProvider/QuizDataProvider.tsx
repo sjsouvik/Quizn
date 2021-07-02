@@ -8,7 +8,7 @@ const dataState: InitialState = {
   quizData: [],
   questions: null,
   currentQuestion: 0,
-  score: 0,
+  scores: [],
   isSubmitted: false,
 };
 
