@@ -20,3 +20,11 @@
     display: flex;
   }
 }
+
+@media only screen and (max-width: 414px) {
+  .quiz-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
