@@ -1,5 +1,6 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
+import NavBar from "./components/NavBar/NavBar";
 import Quizzes from "./components/Quizzes/Quizzes";
 import Questions from "./components/Questions/Questions";
 import Signup from "./components/Signup/Signup";
@@ -8,39 +9,20 @@ import Profile from "./components/Profile/Profile";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import NotFound from "./components/NotFound/NotFound";
 
-import person from "./assets/person.svg";
-
-import { useAuth } from "./providers/AuthProvider/AuthProvider";
+import { useAxios } from "./server/useAxios";
 
 import "./App.css";
 
 export default function App() {
-  const { authToken, authUser } = useAuth();
+  const { loading } = useAxios("quiz");
 
   return (
     <div className="App">
-      <nav className="quiz-navigation">
-        <div className="brand">
-          <h3 className="nav-brand">
-            <Link to="/">Quizn</Link>
-          </h3>
-        </div>
-
-        <ul className="nav-menu">
-          <li className="nav-item">
-            <Link to={authToken ? "/profile" : "/login"}>
-              <img src={person} alt="" style={{ height: "1.5rem" }} />
-              <div style={{ fontSize: "0.85rem", letterSpacing: "1px" }}>
-                {authToken ? "Hello " + authUser?.firstName : "Login"}
-              </div>
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <NavBar />
 
       <main>
         <Routes>
-          <Route path="/" element={<Quizzes />} />
+          <Route path="/" element={<Quizzes loading={loading} />} />
           <PrivateRoute path="/quiz/:id" element={<Questions />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
