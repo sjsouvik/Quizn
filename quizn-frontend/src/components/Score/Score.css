@@ -1,0 +1,23 @@
+.score-card {
+  border-radius: 0.5rem;
+  height: 10rem;
+}
+
+.score-body {
+  margin: 1rem 0;
+  padding: 2rem;
+}
+
+.score-card-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.score {
+  font-weight: bold;
+}
+
+.no-score {
+  width: 40%;
+  margin: auto;
+}
